@@ -3,7 +3,7 @@
   const CATEGORIES = ["הכל", "שמלות", "חולצות", "מכנסיים", "ספורט", "בגדי ים", "נעליים", "פריטים לבית"];
 
   const items = window.ITEMS.map((it, i) => ({ ...it, id: i }));
-  const state = { category: "הכל", availability: "available", size: "all", q: "", selected: new Set() };
+  const state = { category: "הכל", availability: "available", q: "", selected: new Set() };
 
   const $ = (id) => document.getElementById(id);
   const grid = $("grid");
@@ -18,19 +18,7 @@
     $("categories").appendChild(b);
   });
 
-  // Size options
-  const sizes = [...new Set(items.map((i) => i.size.toUpperCase()).filter(Boolean))].sort((a, b) => {
-    const na = Number(a), nb = Number(b);
-    if (!isNaN(na) && !isNaN(nb)) return na - nb;
-    if (!isNaN(na)) return -1;
-    if (!isNaN(nb)) return 1;
-    return a.localeCompare(b);
-  });
-  $("size").innerHTML = '<option value="all">כל המידות</option>' +
-    sizes.map((s) => `<option value="${s}">מידה ${s}</option>`).join("");
-
   $("availability").onchange = (e) => { state.availability = e.target.value; render(); };
-  $("size").onchange = (e) => { state.size = e.target.value; render(); };
   $("search").oninput = (e) => { state.q = e.target.value.trim(); render(); };
   $("clear").onclick = () => { state.selected.clear(); render(); };
   $("send").onclick = send;
@@ -40,7 +28,6 @@
     return items.filter((it) =>
       (state.category === "הכל" || it.category === state.category) &&
       (state.availability === "all" || (state.availability === "sold") === !!it.sold) &&
-      (state.size === "all" || it.size.toUpperCase() === state.size) &&
       (!state.q || it.name.includes(state.q))
     );
   }
