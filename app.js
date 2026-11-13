@@ -74,7 +74,11 @@
   function send() {
     const sel = items.filter((i) => state.selected.has(i.id));
     if (!sel.length) return;
-    const text = `היי אשמח לקנות את הפריטים הבאים:\n${sel.map((i) => `${i.name} - ${i.price} ₪`).join("\n")}`;
+    // U+200F (right-to-left mark) at the start of every line makes WhatsApp render each line RTL,
+    // even when an item name starts with English letters or digits.
+    const RLM = "‏";
+    const lines = ["היי אשמח לקנות את הפריטים הבאים:", ...sel.map((i) => `${i.name} - ${i.price} ₪`)];
+    const text = lines.map((l) => RLM + l).join("\n");
     window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
   }
 
