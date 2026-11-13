@@ -2,7 +2,8 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#deebf7" />
   <title>הארון של מאיהלי</title>
   <meta name="description" content="פריטים יפים שמחפשים ארון חדש ♡" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,8 +15,8 @@
     <header class="hero">
       <p class="eyebrow">THE CLOSET EDIT</p>
       <h1>הארון של מאיהלי</h1>
-      <p class="pickup">📍 איסוף מבת גלים ♡</p>
-      <div class="hero-art" aria-hidden="true"><span>♡</span></div>
+      <p class="pickup">📍 איסוף מבת גלים</p>
+      <img class="hero-art" src="images/hero.jpg" alt="מאיהלי" width="1124" height="746" />
       <a class="discover" href="#closet">DISCOVER THE COLLECTION</a>
     </header>
   <main class="wrap">
@@ -26,14 +27,13 @@
       <div class="chips" id="categories" role="tablist"></div>
 
       <div class="filters">
+        <input id="search" type="search" placeholder="חיפוש פריט..." enterkeyhint="search" />
         <select id="availability" aria-label="זמינות">
           <option value="available">זמינים בלבד</option>
           <option value="all">כל הפריטים</option>
           <option value="sold">נמכרו</option>
         </select>
       </div>
-
-      <input id="search" type="search" placeholder="חיפוש פריט..." />
 
       <p class="hint">לחיצה על פריט מוסיפה אותו לבחירה ♡ מחירי ברירת המחדל נקבעו לפי סוג הפריט.</p>
 
