@@ -78,7 +78,7 @@
     // A second mark after the name keeps English words (e.g. "Levi's") from pulling the price into their
     // left-to-right run, which would otherwise show the price between the Hebrew and English words.
     const RLM = "\u200F";
-    const lines = ["היי אשמח לקנות את הפריטים הבאים:", ...sel.map((i) => `${i.name}${RLM} - ${i.price} ₪`)];
+    const lines = ["היי מאיהלי אשמח לקנות את הפריטים הבאים:", ...sel.map((i) => `${i.name}${RLM} - ${i.price} ₪`)];
     const text = lines.map((l) => RLM + l).join("\n");
     window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
   }
