@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A second chance. | The Closet Edit</title>
+  <meta name="description" content="פריטים יפים שמחפשים ארון חדש ♡" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Assistant:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <p class="eyebrow">THE CLOSET EDIT</p>
+      <h1>A second chance.</h1>
+      <p class="tagline">פריטים יפים שמחפשים ארון חדש ♡</p>
+      <p class="pickup">📍 איסוף עצמי מקריית אליעזר, ליד רכבת בת גלים ♡</p>
+      <div class="hero-art" aria-hidden="true"><span>♡</span></div>
+      <a class="discover" href="#closet">DISCOVER THE COLLECTION</a>
+    </header>
+
+    <section id="closet">
+      <h2>הארון שלי <small id="count"></small></h2>
+
+      <div class="chips" id="categories" role="tablist"></div>
+
+      <div class="filters">
+        <select id="availability" aria-label="זמינות">
+          <option value="available">זמינים בלבד</option>
+          <option value="all">כל הפריטים</option>
+          <option value="sold">נמכרו</option>
+        </select>
+        <select id="size" aria-label="מידה"></select>
+      </div>
+
+      <input id="search" type="search" placeholder="חיפוש פריט..." />
+
+      <p class="hint">לחיצה על פריט מוסיפה אותו לבחירה ♡ מחירי ברירת המחדל נקבעו לפי סוג הפריט.</p>
+
+      <div class="grid" id="grid"></div>
+      <p class="empty" id="empty" hidden>לא נמצאו פריטים</p>
+    </section>
+
+    <footer>
+      <a id="chat" class="chat" target="_blank" rel="noopener">דברי איתי בוואטסאפ ♡</a>
+      <p>A second chance. ♡</p>
+    </footer>
+  </main>
+
+  <div class="sendbar" id="sendbar" hidden>
+    <div class="sendbar-info">
+      <strong id="sel-count"></strong>
+      <span id="sel-total"></span>
+      <button type="button" id="clear" class="link">ניקוי</button>
+    </div>
+    <button type="button" id="send" class="send">SEND</button>
+  </div>
+
+  <script src="items.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
