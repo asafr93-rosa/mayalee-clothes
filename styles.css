@@ -28,14 +28,13 @@ body.has-bar { padding-bottom: 96px; }
 /* Hero: full-bleed navy band */
 .hero {
   position: relative;
-  margin: 0 -16px;
+  margin: 0;
   padding: 56px 20px 40px;
   text-align: center;
   color: var(--ink);
   background: linear-gradient(135deg, var(--c4) 0%, var(--c2) 60%, var(--c1) 100%);
   overflow: hidden;
 }
-@media (min-width: 1132px) { .hero { margin: 16px 0 0; border-radius: 6px; } }
 .hero::after {
   content: ""; position: absolute; inset: auto 0 0 0; height: 60px;
   background: repeating-linear-gradient(90deg, rgba(255,255,255,0.35) 0 2px, transparent 2px 22px);

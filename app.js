@@ -75,8 +75,7 @@
   function send() {
     const sel = items.filter((i) => state.selected.has(i.id));
     if (!sel.length) return;
-    const lines = sel.map((i) => `• ${i.name}${i.size ? ` (מידה ${i.size})` : ""} - ${i.price} ₪`);
-    const text = `היי ♡ אשמח לקנות את הפריטים הבאים:\n${lines.join("\n")}`;
+    const text = `היי אשמח לקנות את הפריטים הבאים:\n${sel.map((i) => i.name).join("\n")}`;
     window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
   }
 
