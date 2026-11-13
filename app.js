@@ -18,7 +18,6 @@
     $("categories").appendChild(b);
   });
 
-  $("availability").onchange = (e) => { state.availability = e.target.value; render(); };
   $("search").oninput = (e) => { state.q = e.target.value.trim(); render(); };
   $("clear").onclick = () => { state.selected.clear(); render(); };
   $("send").onclick = send;

@@ -89,7 +89,7 @@ h2 small { font-size: 20px; color: var(--muted); font-weight: 400; }
 }
 .chip.active { color: var(--ink); border-bottom-color: var(--c1); font-weight: 700; }
 
-.filters { display: flex; gap: 8px; margin: 14px 0 8px; }
+.filters { display: flex; gap: 8px; margin: 14px 0 16px; }
 .filters input { flex: 1; min-width: 0; }
 select, input[type="search"] {
   font: inherit; font-size: 24px; color: var(--ink);
