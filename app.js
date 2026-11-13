@@ -19,7 +19,7 @@
   });
 
   $("search").oninput = (e) => { state.q = e.target.value.trim(); render(); };
-  $("clear").onclick = () => { state.selected.clear(); render(); };
+  $("clear").onclick = () => { state.selected.clear(); grid.querySelectorAll("button.card").forEach(paintCard); updateBar(); };
   $("send").onclick = send;
   $("chat").href = `https://wa.me/${PHONE}?text=${encodeURIComponent("היי, אשמח לשמוע עוד על הפריטים בארון ♡")}`;
 
@@ -33,19 +33,23 @@
 
   function card(it) {
     const el = document.createElement(it.sold ? "div" : "button");
-    const on = state.selected.has(it.id);
-    el.className = "card" + (it.sold ? " sold" : "") + (on ? " selected" : "");
+    el.className = "card" + (it.sold ? " sold" : "");
+    el.dataset.id = it.id;
     if (!it.sold) {
       el.type = "button";
-      el.setAttribute("aria-pressed", on);
-      el.onclick = () => { on ? state.selected.delete(it.id) : state.selected.add(it.id); render(); };
+      // Only this card and the send bar change on tap; rebuilding the grid would reload every photo.
+      el.onclick = () => {
+        state.selected.has(it.id) ? state.selected.delete(it.id) : state.selected.add(it.id);
+        paintCard(el);
+        updateBar();
+      };
     }
     const meta = it.size ? `${it.category} · מידה ${it.size}` : it.category;
     el.innerHTML = `
       <div class="photo">
         ${it.image ? `<img src="${it.image}" alt="" loading="lazy">` : `<span class="ph">${it.category}</span>`}
         ${it.sold ? '<span class="badge">נמכר ♡</span>' : ""}
-        ${!it.sold ? `<span class="check">${on ? "✓" : "+"}</span>` : ""}
+        ${!it.sold ? '<span class="check"></span>' : ""}
       </div>
       <div class="info">
         <h3></h3>
@@ -54,7 +58,15 @@
       </div>`;
     el.querySelector("h3").textContent = it.name;
     el.querySelector(".meta").textContent = meta;
+    if (!it.sold) paintCard(el);
     return el;
+  }
+
+  function paintCard(el) {
+    const on = state.selected.has(Number(el.dataset.id));
+    el.classList.toggle("selected", on);
+    el.setAttribute("aria-pressed", on);
+    el.querySelector(".check").textContent = on ? "✓" : "+";
   }
 
   function render() {
@@ -63,7 +75,10 @@
     grid.replaceChildren(...list.map(card));
     $("empty").hidden = list.length > 0;
     $("count").textContent = `(${items.length} פריטים)`;
+    updateBar();
+  }
 
+  function updateBar() {
     const sel = items.filter((i) => state.selected.has(i.id));
     $("sendbar").hidden = sel.length === 0;
     document.body.classList.toggle("has-bar", sel.length > 0);
